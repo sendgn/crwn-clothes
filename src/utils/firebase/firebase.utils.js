@@ -38,13 +38,23 @@ googleProvider.setCustomParameters({
 });
 
 // Show popup window with Google auth to sign in
-export const signInWithGooglePopup = () =>
-    signInWithPopup(auth, googleProvider);
+export const signInWithGooglePopup = () => signInWithPopup(
+    auth,
+    googleProvider
+);
 // Redirect to another Google auth page to sign in
-export const signInWithGoogleRedirect = () =>
-    signInWithRedirect(auth, googleProvider);
+export const signInWithGoogleRedirect = () => signInWithRedirect(
+    auth,
+    googleProvider
+);
 
-// Create user document in db
+// Create user auth token with email/password
+export const createAuthUserWithEmailAndPassword = async (email, password) => {
+    if (!email || !password) return;
+    return await createUserWithEmailAndPassword(auth, email, password);
+}
+
+// Add user document to db
 export const createUserDocumentFromAuth = async (
     userAuth, 
     additionalInformation = {}
@@ -72,10 +82,4 @@ export const createUserDocumentFromAuth = async (
     }
 
     return userDocRef;
-}
-
-// Get user ref from email/password auth
-export const createAuthUserWithEmailAndPassword = async (email, password) => {
-    if (!email || !password) return;
-    return await createUserWithEmailAndPassword(auth, email, password);
 }
