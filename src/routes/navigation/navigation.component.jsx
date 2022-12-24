@@ -2,6 +2,7 @@ import { Outlet, Link } from 'react-router-dom';
 import { useContext } from 'react';
 
 import { UserContext } from '../../contexts/user.context';
+import { CartContext } from '../../contexts/cart.context';
 
 import CartIcon from '../../components/cart-icon/cart-icon.component';
 import CartDropdown from '../../components/cart-dropdown/cart-dropdown.component';
@@ -13,6 +14,11 @@ import './navigation.styles.scss';
 
 const Navigation = () => {
     const { currentUser } = useContext(UserContext);
+    const { isCartOpen, setIsCartOpen } = useContext(CartContext);
+
+    const handleCartClick = () => {
+        setIsCartOpen(!isCartOpen);
+    }
 
     return (
         <>
@@ -38,7 +44,7 @@ const Navigation = () => {
                     )}
                     <CartIcon />
                 </div>
-                <CartDropdown />
+                {isCartOpen && <CartDropdown />}
             </div>
             <Outlet />
         </>
