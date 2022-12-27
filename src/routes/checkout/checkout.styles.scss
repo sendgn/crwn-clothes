@@ -1,0 +1,28 @@
+.checkout-container {
+    max-width: 1000px;
+    margin: 0 auto;
+
+    .checkout-img {
+        width: 160px;
+    }
+
+    .checkout-row {
+        display: grid;
+        align-items: center;
+        grid-template-columns: repeat(5, 1fr);
+        margin: 20px 0;
+    }
+
+    .quantity {
+        width: 40px;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+
+    .checkout-control-btn {
+        cursor: pointer;
+        user-select: none;
+        font-size: 25px;
+    }
+}
