@@ -16,6 +16,35 @@ const addCartItem = (cartItems, productToAdd) => {
     return [...cartItems, { ...productToAdd, quantity: 1 }];
 }
 
+const removeCartItem = (cartItems, productToRemove) => {
+    return cartItems.filter((cartItem) => cartItem.id !== productToRemove.id);
+}
+
+const incrementCartItemCount = (cartItems, productToIncrement) => {
+    return (
+        cartItems.map((cartItem) => {
+            return (
+                cartItem.id === productToIncrement.id
+                ? { ...cartItem, quantity: cartItem.quantity + 1 }
+                : cartItem
+            );
+        })
+    );
+}
+
+const decrementCartItemCount = (cartItems, productToDecrement) => {
+    return (
+        cartItems.map((cartItem) => {
+            if (cartItem.quantity <= 0) return { ...cartItem, quantity: 0 };
+            return (
+                cartItem.id === productToDecrement.id
+                ? { ...cartItem, quantity: cartItem.quantity - 1 }
+                : cartItem
+            );
+        })
+    );
+}
+
 export const CartContext = createContext({
     isCartOpen: false,
     setIsCartOpen: () => {},
@@ -41,12 +70,27 @@ export const CartProvider = ({ children }) => {
         setCartItems(addCartItem(cartItems, productToAdd));
     }
 
+    const removeItemFromCart = (productToRemove) => {
+        setCartItems(removeCartItem(cartItems, productToRemove));
+    }
+
+    const incrementCount = (productToIncrement) => {
+        setCartItems(incrementCartItemCount(cartItems, productToIncrement));
+    }
+
+    const decrementCount = (productToDecrement) => {
+        setCartItems(decrementCartItemCount(cartItems, productToDecrement));
+    }
+
     const value = {
         isCartOpen,
         setIsCartOpen,
         addItemToCart,
+        removeItemFromCart,
         cartItems,
-        cartCount
+        cartCount,
+        incrementCount,
+        decrementCount,
     };
 
     return (

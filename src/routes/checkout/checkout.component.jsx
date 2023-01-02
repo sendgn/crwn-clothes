@@ -13,19 +13,12 @@ const Checkout = () => {
         'Remove',
     ]
 
-    const { cartItems } = useContext(CartContext);
-
-    const decrementQuantity = () => {
-        console.log('decrement');
-    }
-
-    const incrementQuantity = () => {
-        console.log('increment');
-    }
-
-    const removeCartItem = () => {
-        console.log('remove');
-    }
+    const {
+        cartItems,
+        removeItemFromCart,
+        incrementCount,
+        decrementCount,
+    } = useContext(CartContext);
 
     return (
         <div className='checkout-container'>
@@ -41,12 +34,12 @@ const Checkout = () => {
                         <img className='checkout-img' src={imageUrl} alt={name} />
                         <div>{name}</div>
                         <div className='quantity'>
-                            <span className='checkout-control-btn' onClick={decrementQuantity}>❮</span>
+                            <span className='checkout-control-btn' onClick={() => decrementCount(item)}>❮</span>
                             <span>{quantity}</span>
-                            <span className='checkout-control-btn' onClick={incrementQuantity}>❯</span>
+                            <span className='checkout-control-btn' onClick={() => incrementCount(item)}>❯</span>
                         </div>
                         <div>{price}</div>
-                        <div className='checkout-control-btn' onClick={removeCartItem}>🗙</div>
+                        <div className='checkout-control-btn' onClick={() => removeItemFromCart(item)}>🗙</div>
                     </div>
                 );
             })}
