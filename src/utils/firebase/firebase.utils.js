@@ -18,6 +18,8 @@ import {
     setDoc,
     collection,
     writeBatch,
+    query,
+    getDocs
 } from 'firebase/firestore';
 
 const firebaseConfig = {
@@ -50,6 +52,20 @@ export const addCollectionAndDocuments = async (
     });
 
     await batch.commit();
+}
+
+export const getCategoriesAndDocuments = async () => {
+    const collectionRef = collection(db, 'categories');
+    const q = query(collectionRef);
+
+    const querySnapshot = await getDocs(q);
+    const categoryMap = querySnapshot.docs.reduce((acc, docSnapshot) => {
+        const { title, items } = docSnapshot.data();
+        acc[title.toLowerCase()] = items;
+        return acc;
+    }, {});
+    
+    return categoryMap;
 }
 
 // Instantiate and set up Google provider
