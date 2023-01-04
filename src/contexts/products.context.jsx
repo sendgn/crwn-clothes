@@ -1,13 +1,21 @@
-import { createContext, useState } from 'react';
+import { createContext, useEffect, useState } from 'react';
 
-import PRODUCTS from '../data/shop-data.json';
+import { addCollectionAndDocuments } from '../utils/firebase/firebase.utils';
+
+// import SHOP_DATA from '../shop-data.js';
 
 export const ProductsContext = createContext({
     products: [],
 });
 
 export const ProductsProvider = ({ children }) => {
-    const [products, setProducts] = useState(PRODUCTS);
+    const [products, setProducts] = useState([]);
+
+    // Uncomment to create collection in Firebase from an object array
+    // useEffect(() => {
+    //     addCollectionAndDocuments('categories', SHOP_DATA);
+    // }, []);
+
     const value = { products };
 
     return (
