@@ -2,16 +2,16 @@ import { createContext, useEffect, useState } from 'react';
 
 /* Step 1. Uncomment imports before doing Step 2. */
 // import { addCollectionAndDocuments } from '../utils/firebase/firebase.utils';
-// import SHOP_DATA from '../shop-data.js';
+// import SHOP_DATA from '../data/shop-data';
 
 import { getCategoriesAndDocuments } from '../utils/firebase/firebase.utils';
 
-export const ProductsContext = createContext({
-    products: [],
+export const CategoriesContext = createContext({
+    categoriesMap: {},
 });
 
-export const ProductsProvider = ({ children }) => {
-    const [products, setProducts] = useState([]);
+export const CategoriesProvider = ({ children }) => {
+    const [categoriesMap, setCategoriesMap] = useState({});
 
     /* Step 2. Uncomment to create categories collection in Firebase off of SHOP_DATA.
      * Step 3. Comment it again after the first render
@@ -25,16 +25,17 @@ export const ProductsProvider = ({ children }) => {
     useEffect(() => {
         const getCategoriesMap = async () => {
             const categoryMap = await getCategoriesAndDocuments();
+            console.log(categoryMap);
+            setCategoriesMap(categoryMap);
         }
-
         getCategoriesMap();
     }, []);
 
-    const value = { products };
+    const value = { categoriesMap };
 
     return (
-        <ProductsContext.Provider value={value}>
+        <CategoriesContext.Provider value={value}>
             {children}
-        </ProductsContext.Provider>
+        </CategoriesContext.Provider>
     );
 }
