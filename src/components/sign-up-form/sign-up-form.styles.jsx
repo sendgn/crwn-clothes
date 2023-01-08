@@ -8,4 +8,4 @@ export const SignUpContainer = styled.div`
     h2 {
         margin: 10px 0;
     }
-`
+`;

@@ -33,7 +33,7 @@ export const ProductCardContainer = styled.div`
             display: flex;
         }
     }
-`
+`;
 
 export const Footer = styled.div`
     width: 100%;
@@ -41,13 +41,13 @@ export const Footer = styled.div`
     display: flex;
     justify-content: space-between;
     font-size: 18px;
-`
+`;
 
 export const Name = styled.span`
     width: 90%;
     margin-bottom: 15px;
-`
+`;
 
 export const Price = styled.span`
     width: 10%;
-`
+`;
