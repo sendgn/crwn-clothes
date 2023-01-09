@@ -2,7 +2,7 @@
 eCommerce clothing web app
 
 ## Deployed app
-Navigate the [Link](https://crwnwear.netlify.app) to see the end up app.
+[https://crwnwear.netlify.app](https://crwnwear.netlify.app)
 
 ## Setup and run
 ```bash
