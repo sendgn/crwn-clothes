@@ -32,6 +32,7 @@ export const Body = styled.div`
         font-weight: lighter;
         font-size: 16px;
         margin: 10px 0;
+        text-transform: uppercase;
     }
 `;
 
