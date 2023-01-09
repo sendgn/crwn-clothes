@@ -1,10 +1,8 @@
 # CRWN clothes Ltd.
 eCommerce clothing web app
 
-## Website overview
-```bash
-https://crwnwear.netlify.app/
-```
+## Deployed app
+Navigate the [Link](https://crwnwear.netlify.app) to see the end up app.
 
 ## Setup and run
 ```bash
