@@ -6,6 +6,14 @@ import thunk from 'redux-thunk';
 
 import { rootReducer } from './root-reducer';
 
+const persistConfig = {
+    key: 'root',
+    storage,
+    whitelist: ['cart'],
+}
+
+const persistedReducer = persistReducer(persistConfig, rootReducer);
+
 const middleWares = [
     process.env.NODE_ENV !== 'production' && logger,
     thunk,
@@ -18,14 +26,6 @@ const composeEnhancer =
     compose;
 
 const composedEnhancers = composeEnhancer(applyMiddleware(...middleWares));
-
-const persistConfig = {
-    key: 'root',
-    storage,
-    blacklist: ['user']
-}
-
-const persistedReducer = persistReducer(persistConfig, rootReducer);
 
 export const store = createStore(
     persistedReducer,
