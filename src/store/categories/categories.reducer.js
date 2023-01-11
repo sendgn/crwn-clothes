@@ -1,11 +1,11 @@
 import { CATEGORIES_ACTION_TYPES } from './categories.types';
 
-const INITIAL_STATE = {
+export const CATEGORIES_INITIAL_STATE = {
     categories: [],
 }
 
 export const categoriesReducer = (
-    state = INITIAL_STATE,
+    state = CATEGORIES_INITIAL_STATE,
     action = {}
 ) => {
     const { type, payload } = action;
